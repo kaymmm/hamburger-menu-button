@@ -1,0 +1,165 @@
+// customizable variables
+$hamburger-height: 22px;
+$hamburger-width: 30px;
+$hamburger-bar-height: 4px;
+$hamburger-color: #222;
+$hamburger-background: transparent;
+$hamburger-margin: 5px;
+$hamburger-padding: 20px;
+$hamburger-speed: 0.3s;
+
+// pseudo padding, uses absolute positioning to simulate padding
+
+// parent element that wraps the button (e.g., <a>) should have the class 'hamburger-button'
+.hamburger-button {
+    background-color: $hamburger-background;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    height: $hamburger-height + 2 * $hamburger-padding;
+    margin: $hamburger-margin;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-indent: -99999px;
+    transition: $hamburger-speed;
+    transition-property: background;
+    width: $hamburger-width + 2 * $hamburger-padding;
+    &:focus {
+        outline: none;
+    }
+    span {
+        background: $hamburger-color;
+        display: block;
+        height: $hamburger-bar-height;
+        left: $hamburger-padding;
+        margin: 0;
+        position: absolute;
+        right: $hamburger-padding;
+        top: $hamburger-height / 2 - $hamburger-bar-height / 2 + $hamburger-padding;
+        transition: $hamburger-speed, $hamburger-speed;
+        &::before,
+        &::after {
+            background: $hamburger-color;
+            content: '';
+            display: block;
+            height: $hamburger-bar-height;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+        &::before {
+            top: -$hamburger-height / 2 + $hamburger-bar-height / 2;
+            transition: $hamburger-speed, $hamburger-speed, $hamburger-speed;
+            transition-property: transform, width, top;
+        }
+        &::after {
+            bottom: -$hamburger-height / 2 + $hamburger-bar-height / 2;
+            transition: $hamburger-speed, $hamburger-speed, $hamburger-speed;
+            transition-property: transform, width, bottom;
+        }
+    }
+}
+
+// Animated hamburger button clicked...
+// Add the second class .hamburger-animated-XX where XX is one of the following:
+//  la = left arrow
+//  ra = right arrow
+//  x  = x, i.e. close icon
+
+.hamburger-animated-la {
+    span {
+        transition-property: transform, width, left;
+        &::before {
+            transform-origin: bottom right;
+        }
+        &::after {
+            transform-origin: top right;
+        }
+    }
+    &.active {
+        span {
+            left: $hamburger-padding + $hamburger-bar-height / 2;
+            transform: rotate(180deg);
+            &::before,
+            &::after {
+                width: $hamburger-height * 0.707;
+                // h/sqrt(2)
+           
+            }
+            &::before {
+                top: 0;
+                transform: translateX($hamburger-width - $hamburger-height * 0.707) translateY($hamburger-bar-height * 0.207) rotate(45deg);
+                // x = w - h/sqrt(2)  y = hbh/sqrt(2) - hbh/2 ~= hbh * 0.207
+           
+            }
+            &::after {
+                bottom: 0;
+                transform: translateX($hamburger-width - $hamburger-height * 0.707) translateY(-$hamburger-bar-height * 0.207) rotate(-45deg);
+            }
+        }
+    }
+}
+
+.hamburger-animated-ra {
+    span {
+        transition-property: transform, width, right;
+        &::before {
+            transform-origin: bottom left;
+        }
+        &::after {
+            transform-origin: top left;
+        }
+    }
+    &.active {
+        span {
+            right: $hamburger-padding + $hamburger-bar-height / 2;
+            transform: rotate(-180deg);
+            &::before,
+            &::after {
+                width: $hamburger-height * 0.707;
+            }
+            &::before {
+                top: 0;
+                transform: translateX(0) translateY($hamburger-bar-height * 0.207) rotate(-45deg);
+            }
+            &::after {
+                bottom: 0;
+                transform: translateX(0) translateY(-$hamburger-bar-height * 0.207) rotate(45deg);
+            }
+        }
+    }
+}
+
+.hamburger-animated-x {
+    span {
+        transition-property: transform, background;
+        &::before {
+            transform-origin: center center;
+        }
+        &::after {
+            transform-origin: center center;
+        }
+    }
+    &.active {
+        span {
+            background: transparent;
+            //left: $hamburger-bar-height;
+            &::before,
+            &::after {
+                width: $hamburger-height * 1.414;
+            }
+            &::before {
+                top: 0;
+                transform: translateX($hamburger-width / 2 - $hamburger-height * 0.707) rotate(135deg);
+            }
+            &::after {
+                bottom: 0;
+                transform: translateX($hamburger-width / 2 - $hamburger-height * 0.707) rotate(-135deg);
+            }
+        }
+    }
+}
