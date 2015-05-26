@@ -1,6 +1,5 @@
-'use strict';
-
 module.exports = function(grunt) {
+  'use strict';
 
     require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
     require('time-grunt')(grunt);
@@ -15,9 +14,12 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            assemble: {
-                files: ['<%= config.src %>/{content-,data,templates}/{,*/}/{,*/}/*.{md,hbs,yml}'],
-                tasks: ['assemble']
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
+            html: {
+                files: ['<%= config.src %>/{,*/}/*.{html,htm}'],
+                tasks: ['newer:copy:serverhtml']
             },
             sass : {
                 files: ['<%= config.src %>/assets/scss/{,*/}*.{scss,css}'],
@@ -25,11 +27,11 @@ module.exports = function(grunt) {
             },
             img : {
                 files: ['<%= config.src %>/assets/images/*.{jpg,jpeg,png,gif}'],
-                tasks: ['imagemin:server']
+                tasks: ['newer:imagemin:server']
             },
             js : {
                 files: ['<%= config.src %>/assets/scripts/*.js'],
-                tasks: ['copy:serverjs']
+                tasks: ['jshint','copy:serverjs']
             }
         },
 
@@ -57,40 +59,21 @@ module.exports = function(grunt) {
 
         sass: {
             options: {
-                loadPath: [
-                    'bower_components'
-                ]
+              lineNumbers: true,
+              loadPath: 'bower_components/'
             },
             server: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.src %>/assets/scss',
-                    src: ['*.scss'],
-                    dest: '<%= config.tmp %>/assets/css',
-                    ext: '.css'
-                }]
+                files: {
+                  '<%= config.tmp %>/assets/css/app.css': '<%= config.src %>/assets/scss/app.scss'
+                }
             },
             build: {
                 options:{
                     style: 'compressed'
                 },
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.src %>/assets/scss',
-                    src: ['*.scss'],
-                    dest: '<%= config.dist %>/assets/css',
-                    ext: '.css'
-                }]
-            }
-        },
-
-        prettysass: {
-            options: {
-                alphabetize: false,
-                indent: 4
-            },
-            app: {
-                src: ['<%= config.src %>/assets/scss/**/*.scss']
+                files: {
+                  '<%= config.dist %>/assets/css/app.css': '<%= config.src %>/assets/scss/app.scss'
+                }
             }
         },
 
@@ -116,27 +99,12 @@ module.exports = function(grunt) {
             }
         },
 
-        assemble: {
-            pages: {
-                options: {
-                    flatten: true,
-                    assets: '<%= config.dist %>/assets',
-                    layout: '<%= config.src %>/templates/layouts/default.hbs',
-                    data: '<%= config.src %>/data/*.{json,yml}',
-                    partials: '<%= config.src %>/templates/partials/*.hbs'
-                },
-                files: {
-                    '<%= config.tmp %>/': ['<%= config.src %>/templates/pages/{,*/}/*.hbs']
-                }
-            }
-        },
-
         useminPrepare: {
             options: {
                 dest: '<%= config.dist %>'
             },
             html: '<%= config.tmp %>/index.html',
-            css: '<%= config.tmp %>/assets/css/app.css'
+            //css: '<%= config.tmp %>/assets/css/app.css'
         },
 
         usemin: {
@@ -198,21 +166,6 @@ module.exports = function(grunt) {
             }
         },
 
-        modernizr: {
-            dist: {
-                devFile: 'bower_components/modernizr/modernizr.js',
-                outputFile: '<%= config.dist %>/assets/scripts/vendor/modernizr.js',
-                files: {
-                    src: [
-                        '<%= config.dist %>/assets/scripts/{,*/}*.js',
-                        '<%= config.dist %>/assets/css/{,*/}*.css',
-                        '!<%= config.dist %>/assets/scripts/vendor/*'
-                    ]
-                },
-                uglify: true
-            }
-        },
-
         copy: {
             server: {
                 files: [{
@@ -221,11 +174,22 @@ module.exports = function(grunt) {
                     cwd: '<%= config.src %>',
                     dest: '<%= config.tmp %>',
                     src: [
+                        '{,*/}*.{html,htm}',
                         '*.{ico,png,jpg,txt}',
                         '.htaccess',
                         'assets/fonts/{,*/}*.*',
                         'assets/scripts/{,*/}*.js'
                     ]
+                }]
+            },
+            serverhtml: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.src %>',
+                    dest: '<%= config.tmp %>',
+                    src: [
+                        '{,*/}*.{html,htm}']
                 }]
             },
             serverjs: {
@@ -252,6 +216,20 @@ module.exports = function(grunt) {
             }
         },
 
+        jshint: {
+          options: {
+            curly: true,
+            eqeqeq: true,
+            eqnull: true,
+            browser: true,
+            globals: {
+              jQuery: true
+            },
+            reporter: require('jshint-stylish')
+          },
+          all: ['Gruntfile.js', 'src/**/*.js']
+        },
+
         uglify: {
           options: {
             mangle: false
@@ -263,18 +241,26 @@ module.exports = function(grunt) {
           }
         },
 
+        // Automatically inject Bower components into the HTML file
+        wiredep: {
+          app: {
+            ignorePath: /^\/|\.\.\//,
+            src: ['<%= config.src %>/index.html'],
+            //exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
+          }
+        },
+
+
         clean: ['<%= config.dist %>','<%= config.tmp %>'],
 
         concurrent: {
             server: [
-                'prettysass',
                 'sass:server',
                 'autoprefixer:server',
                 'imagemin:server',
                 'copy:server'
             ],
             dist: [
-                'prettysass',
                 'sass:build',
                 'autoprefixer:dist',
                 'imagemin:dist',
@@ -285,11 +271,9 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('assemble');
-
     grunt.registerTask('serve', [
         'clean',
-        'assemble',
+        'jshint',
         'concurrent:server',
         'browserSync',
         'watch'
@@ -297,11 +281,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean',
-        'assemble',
+        'jshint',
         'copy:build',
         'useminPrepare',
         'concurrent:dist',
-        'modernizr',
         'usemin',
         'htmlmin'
     ]);

@@ -5,3 +5,5 @@
 
 // import the good stuff
 @import "hamburger_menu_button";
+
+button:focus { background: $hamburger-background; }

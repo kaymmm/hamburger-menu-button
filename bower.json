@@ -1,15 +1,28 @@
 {
   "name": "hamburger-menu-button",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "main": [
+    "dist/hmb.css",
+    "dist/hmb.js"
+  ],
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "pages"
+  ],
+  "keywords": [
+    "hamburger",
+    "web-components",
+    "menu",
+    "navicon",
+    "icon",
+    "burger"
   ],
   "dependencies": {
-    "modernizr": "~2.8.3"
+    "materialize": "git@github.com:Dogfalo/materialize.git#master"
   }
 }
