@@ -1,9 +1,3 @@
-// import variables
-@import "variables";
-
-// to use custom variables, define them in sass before importing hamburger_menu_button directly in your sass file
-
-// import the good stuff
-@import "hamburger_menu_button";
+@import "hmb";
 
 button:focus { background: $hamburger-background; }
