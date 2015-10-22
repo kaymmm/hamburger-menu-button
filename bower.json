@@ -23,6 +23,6 @@
     "burger"
   ],
   "dependencies": {
-    "materialize": "git@github.com:Dogfalo/materialize.git#master"
+    "materialize": "git@github.com:kaymmm/materialize.git#working"
   }
 }
