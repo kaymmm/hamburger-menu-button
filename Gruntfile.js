@@ -115,7 +115,7 @@ module.exports = function(grunt) {
           'bower_components'
         ]
       },
-      //html: ['<%= config.dist %>/index.html'],
+      html: ['<%= config.dist %>/index.html'],
       //css: ['<%= config.dist %>/assets/css/*.css'],
       //js: ['<%= config.dist %>/assets/scripts/*.js']
     },
@@ -155,6 +155,12 @@ module.exports = function(grunt) {
             'assets/fonts/{,*/}*.*',
             'assets/scripts/{,*/}*.js'
           ]
+        },{
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/materialize/',
+          src: 'font/{,*/}*.*',
+          dest: '<%= config.tmp %>'
         }]
       },
 
@@ -191,6 +197,12 @@ module.exports = function(grunt) {
           src: [
             '{,*/}*.{html,htm}'
           ]
+        },{
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/materialize/',
+          src: 'font/{,*/}*.*',
+          dest: '<%= config.dist %>/assets/'
         }]
       },
 
@@ -253,19 +265,6 @@ module.exports = function(grunt) {
       bin: ['<%= config.bin %>'],
     },
 
-    concurrent: {
-      server: [
-        'sass:server',
-        'autoprefixer:server',
-        'copy:server'
-      ],
-      dist: [
-        'sass:dist',
-        'autoprefixer:dist',
-        'copy:dist'
-      ]
-    },
-
     'gh-pages': {
       options: {
         base: 'dist'
@@ -288,7 +287,9 @@ module.exports = function(grunt) {
   grunt.registerTask('serve', [
     'clean:server',
     'jshint',
-    'concurrent:server',
+    'sass:server',
+    'autoprefixer:server',
+    'copy:server',
     'browserSync',
     'watch'
   ]);
@@ -296,13 +297,15 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:all',
     'jshint',
-    'concurrent:dist',
+    'sass:dist',
+    'autoprefixer:dist',
     'useminPrepare',
     'concat:generated',
     'cssmin:generated',
     'uglify:generated',
+    'copy:dist',
     'usemin',
-    'htmlmin',
+    //'htmlmin',
     'copy:bin'
   ]);
 
