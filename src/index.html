@@ -12,13 +12,13 @@
     <meta name="mobile-web-app-capable" content="yes">
     <title>Hamburger Menu Button</title>
 
-    <!-- build:css({src,.tmp}) assets/css/vendor.css -->
+    <!-- build:css assets/css/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="bower_components/Materialize/bin/materialize.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css(.tmp) assets/css/app.css -->
+    <!-- build:css(.tmp) assets/css/hamburger-menu-button.css -->
     <link href="assets/css/app.css" rel="stylesheet">
     <!-- endbuild -->
 
@@ -59,35 +59,43 @@
     <h1>Animated Hamburger Menu Button</h1>
     <p>I did the math to figure out the animations so you don't have to...</p>
 
-    <h2>Examples:</h2>
-    <p>Animated left-arrow:</p>
-    <button class="hamburger-button hamburger-animated-la"><span></span></button>
-    <code><pre>
+    <h2>Examples</h2>
+    <h3>Animated left-arrow:</h3>
+    <button class="hamburger-button hamburger-animated-la">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
     &lt;button class="hamburger-button hamburger-animated-la"&gt;
     &lt;span&gt;&lt;/span&gt;
     &lt;/button&gt;
-    </pre></code>
+    </pre>
     <p>Animated right-arrow:</p>
-    <button class="hamburger-button hamburger-animated-ra"><span></span></button>
-    <code><pre>
+    <button class="hamburger-button hamburger-animated-ra">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
     &lt;button class="hamburger-button hamburger-animated-ra"&gt;
     &lt;span&gt;&lt;/span&gt;
     &lt;/button&gt;
-    </pre></code>
+    </pre>
     <p>Animated "X":</p>
-    <button class="hamburger-button hamburger-animated-x"><span></span></button>
-    <code><pre>
+    <button class="hamburger-button hamburger-animated-x">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
     &lt;button class="hamburger-button hamburger-animated-x"&gt;
     &lt;span&gt;&lt;/span&gt;
     &lt;/button&gt;
-    </pre></code>
+    </pre>
     <p>Not Animated, just a hamburger:</p>
-    <button class="hamburger-button"><span></span></button>
-    <code><pre>
+    <button class="hamburger-button">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
     &lt;button class="hamburger-button"&gt;
     &lt;span&gt;&lt;/span&gt;
     &lt;/button&gt;
-    </pre></code>
+    </pre>
 
     <h2>Installation</h2>
     <h3>Using Bower:</h3>
@@ -100,7 +108,7 @@
     <code>&lt;script src="bower_components/dist/hmb.js"&gt;&lt;/script&gt;</code>
 
     <h3>Manual Installation:</h3>
-    <p>Download the latest release from git: <a href="">hmb-0.1.0.zip</a></p>
+    <p>Download the <a href="https://github.com/kaymmm/hamburger-menu-button/releases/latest">latest release</a> from GitHub.</p>
     <p>Unzip the file and copy hmb.css and hmb.js to your working directory, then include them in your html:</p>
 
     <p>In your html header:</p>
@@ -116,35 +124,18 @@
 
 </main>
 <footer class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2015 Keith Miyake
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2015 Keith Miyake
+    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
 
-  <!-- build:js({src,.tmp}) assets/scripts/vendor.js -->
+  <!-- build:js assets/scripts/vendor.js -->
   <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/materialize/bin/materialize.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/Materialize/bin/materialize.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 

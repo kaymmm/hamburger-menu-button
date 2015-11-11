@@ -1,3 +1,7 @@
-@import "hmb";
+@import 'hmb';
 
 button:focus { background: $hamburger-background; }
+
+h2 {
+  border-bottom: 2px solid #ccc;
+}
