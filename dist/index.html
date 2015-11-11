@@ -1,0 +1,147 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Hamburger Menu Button</title>
+
+    <!-- build:css assets/css/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/Materialize/bin/materialize.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) assets/css/hamburger-menu-button.css -->
+    <link href="assets/css/app.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="images/touch/icon-128x128.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/images/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- Desktop url -->
+    <link rel="canonical" href="http://www.example.com/">
+
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="http://www.github.com/kaymmm/hamburger-menu-button">GitHub</a></li>
+        <li><a href="http://keithmiyake.info">Me</a></li>
+    </ul>
+</nav>
+
+<main class="container" role="main">
+
+    <h1>Animated Hamburger Menu Button</h1>
+    <p>I did the math to figure out the animations so you don't have to...</p>
+
+    <h2>Examples</h2>
+    <h3>Animated left-arrow:</h3>
+    <button class="hamburger-button hamburger-animated-la">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
+    &lt;button class="hamburger-button hamburger-animated-la"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    </pre>
+    <p>Animated right-arrow:</p>
+    <button class="hamburger-button hamburger-animated-ra">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
+    &lt;button class="hamburger-button hamburger-animated-ra"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    </pre>
+    <p>Animated "X":</p>
+    <button class="hamburger-button hamburger-animated-x">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
+    &lt;button class="hamburger-button hamburger-animated-x"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    </pre>
+    <p>Not Animated, just a hamburger:</p>
+    <button class="hamburger-button">
+      <span>&nbsp;</span>
+    </button>
+    <pre>
+    &lt;button class="hamburger-button"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    </pre>
+
+    <h2>Installation</h2>
+    <h3>Using Bower:</h3>
+    <code>$bower install hamburger-menu-button --save</code>
+
+    <p>In your html header:</p>
+    <code>&lt;link href="bower_components/dist/hmb.css" rel="stylesheet"&gt;</code>
+
+    <p>In the footer:</p>
+    <code>&lt;script src="bower_components/dist/hmb.js"&gt;&lt;/script&gt;</code>
+
+    <h3>Manual Installation:</h3>
+    <p>Download the <a href="https://github.com/kaymmm/hamburger-menu-button/releases/latest">latest release</a> from GitHub.</p>
+    <p>Unzip the file and copy hmb.css and hmb.js to your working directory, then include them in your html:</p>
+
+    <p>In your html header:</p>
+    <code>&lt;link href="path/to/hmb.css" rel="stylesheet"&gt;</code>
+
+    <p>In the footer:</p>
+    <code>&lt;script src="path/to/hmb.js"&gt;&lt;/script&gt;</code>
+
+    <h2>Customization</h2>
+    <p>The button is completely customizable via SCSS. Instead of directly including the hmb.css file in your code, you will need to include the source in your SCSS file.</p>
+    <p>...more to come when I get some time...</p>
+
+
+</main>
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+    © 2015 Keith Miyake
+    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
+
+  <!-- build:js assets/scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/Materialize/bin/materialize.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({src,.tmp}) assets/scripts/hamburger-menu-button.min.js -->
+  <script src="assets/scripts/main.js"></script>
+  <!-- endbuild -->
+
+</body>
+</html>
