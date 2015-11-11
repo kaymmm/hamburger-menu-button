@@ -1,16 +1,16 @@
 {
   "name": "hamburger-menu-button",
-  "description": "Animated menu buttons written in SCSS and javascript."
+  "description": "Animated menu buttons written in SCSS and javascript.",
   "version": "0.1.1",
   "main": [
     "bin/hamburger-menu-button.css",
-    "bin/hamburger-menu-button.js"
+    "bin/hamburger-menu-button.js",
+    "src/assets/scss/*"
   ],
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "bower_components"
   ],
   "keywords": [
     "hamburger",
